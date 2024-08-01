@@ -138,6 +138,18 @@ class ChangeTextBehaviorKtTest {
         onView(withId(R.id.show_text_view)).check(matches(withText("")))
     }
 
+    @Test
+//    Enter abcdef in editText and press on the Change Text Button and validate the text matches with input
+    fun test6() {
+        val input: String = context.getString(R.string.text2)
+
+        onView(withId(R.id.editTextUserInput))
+            .perform(typeText(input), closeSoftKeyboard())
+
+        onView(withId(R.id.changeTextBt)).perform(click())
+
+        onView(withId(R.id.textToBeChanged)).check(matches(withText(input)))
+    }
 
 
 

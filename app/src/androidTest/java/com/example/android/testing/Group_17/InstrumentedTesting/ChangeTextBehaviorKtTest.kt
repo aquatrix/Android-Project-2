@@ -130,5 +130,15 @@ class ChangeTextBehaviorKtTest {
         onView(withId(R.id.changeTextBt)).perform(click())
         onView(withId(R.id.textToBeChanged)).check(matches(withText("")))
     }
+    @Test
+//   Without entering anything in userInput clicking on the  Open Activity and Change Text button directly
+//   and validating TextView with empty string
+    fun test5() {
+        onView(withId(R.id.activityChangeTextBtn)).perform(click())
+        onView(withId(R.id.show_text_view)).check(matches(withText("")))
+    }
+
+
+
 
 }

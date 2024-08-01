@@ -18,6 +18,8 @@ package com.example.android.testing.Group_17.InstrumentedTesting
 
 import androidx.test.ext.junit.rules.activityScenarioRule
 import android.app.Activity
+import android.content.Context
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.*
@@ -51,6 +53,9 @@ class ChangeTextBehaviorKtTest {
      */
     @get:Rule var activityScenarioRule = activityScenarioRule<MainActivity>()
 
+    private val context = ApplicationProvider.getApplicationContext<Context>()
+
+
     @Test
     fun changeText_sameActivity() {
 
@@ -72,6 +77,21 @@ class ChangeTextBehaviorKtTest {
 
         // This view is in a different Activity, no need to tell Espresso.
         onView(withId(R.id.show_text_view)).check(matches(withText(STRING_TO_BE_TYPED)))
+    }
+
+
+
+    @Test
+//    Validate correct string in TextView in the MainActivity
+    fun test1() {
+        val input: String = context.getString(R.string.test_text)
+
+        onView(withId(R.id.editTextUserInput))
+            .perform(typeText(input), closeSoftKeyboard())
+
+        onView(withId(R.id.changeTextBt)).perform(click())
+
+        onView(withId(R.id.textToBeChanged)).check(matches(withText(input)))
     }
 
     companion object {

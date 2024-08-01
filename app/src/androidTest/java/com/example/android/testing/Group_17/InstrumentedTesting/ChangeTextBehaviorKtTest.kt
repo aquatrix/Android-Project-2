@@ -94,6 +94,19 @@ class ChangeTextBehaviorKtTest {
         onView(withId(R.id.textToBeChanged)).check(matches(withText(input)))
     }
 
+    @Test
+//    Enter 123 in editText and press on the Change Text Button and validate the text matches with input
+    fun test2() {
+        val input: String = context.getString(R.string.text1)
+
+        onView(withId(R.id.editTextUserInput))
+            .perform(typeText(input), closeSoftKeyboard())
+
+        onView(withId(R.id.changeTextBt)).perform(click())
+
+        onView(withId(R.id.textToBeChanged)).check(matches(withText(input)))
+    }
+
     companion object {
 
         val STRING_TO_BE_TYPED = "Espresso"

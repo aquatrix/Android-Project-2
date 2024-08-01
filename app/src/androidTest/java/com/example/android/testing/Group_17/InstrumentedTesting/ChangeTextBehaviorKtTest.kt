@@ -124,4 +124,11 @@ class ChangeTextBehaviorKtTest {
 
         val STRING_TO_BE_TYPED = "Espresso"
     }
+    @Test
+//    Without entering anything in userInput clicking on the changeText Button directly and validating TextView with empty string
+    fun test4() {
+        onView(withId(R.id.changeTextBt)).perform(click())
+        onView(withId(R.id.textToBeChanged)).check(matches(withText("")))
+    }
+
 }

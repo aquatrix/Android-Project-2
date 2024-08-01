@@ -165,6 +165,18 @@ class ChangeTextBehaviorKtTest {
         onView(withId(R.id.show_text_view)).check(matches(withText(input)))
     }
 
+    @Test
+//      Enter the string in userInput and validated the correct strings in TextView in the ShowTextActivity
+    fun test8()
+    {
+        val input: String = context.getString(R.string.test_text)
 
+        onView(withId(R.id.editTextUserInput))
+            .perform(typeText(input), closeSoftKeyboard())
+
+        onView(withId(R.id.activityChangeTextBtn)).perform(click())
+
+        onView(withId(R.id.show_text_view)).check(matches(withText(input)))
+    }
 
 }
